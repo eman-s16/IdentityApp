@@ -66,12 +66,12 @@ namespace api.Controllers
                 EmailConfirmed = true,
             };
 
-            // creates a user inside our AspNetUsers table inside our database
             var result = await _userManager.CreateAsync(userToAdd, model.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
-           return Ok("Your Account has been created, you can login");
 
-            
+            return Ok(new JsonResult(new { title = "Account Created", message = "Your account has been created, you can login" }));
+
+
 
         }
 
